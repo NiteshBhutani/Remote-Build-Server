@@ -1,0 +1,14 @@
+cd "Executive/bin/Debug"
+start Executive.exe 
+cd ../../../
+cd "Builder/bin/Debug"
+start Builder.exe
+cd ../../../
+cd "Repo/bin/Debug"
+start Repo.exe
+cd ../../../
+cd "TestHarness/bin/Debug"
+start TestHarness.exe
+cd ../../../
+cd "ClientGUI/bin/Debug"
+start ClientGUI.exe

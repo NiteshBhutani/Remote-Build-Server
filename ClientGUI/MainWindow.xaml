@@ -1,0 +1,177 @@
+﻿<Window x:Class="ClientGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientGUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <!-- 
+    /////////////////////////////////////////////////////////////////////////
+    // ClientGUI.xaml - Demonstrates Client GUI for Federation Server      //
+    // ver 1.0                                                             //
+    // Nitesh Bhutani, CSE681 - Software Modeling and Analysis, Fall 2017  //
+    /////////////////////////////////////////////////////////////////////////
+    -->
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="DarkSlateBlue" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="DarkSlateBlue" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Foreground" Value="DarkSlateBlue" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="Foreground" Value="DarkSlateBlue" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Padding="10" Background="#ddd" BorderThickness="0 4 0 0" BorderBrush="DarkSlateBlue">
+
+            <TabControl Margin="0,3,0,-3" Grid.Row="0">
+                <TabItem Grid.Row="0" Name="Client" Header="Client Navigation">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="5"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid  Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal">
+                                    <Label Height="30" x:Name="ClientFilesLabel" Foreground="DarkSlateBlue" FontWeight="bold">Client Files</Label>
+                                    <Label Width="10"></Label>
+                                    <Button Name="ClientTop" Width="40" Height="25" Click="ClientTop_Click">Top</Button>
+                                </StackPanel>
+                                <ListBox Grid.Row="1" x:Name="clientFiles"></ListBox>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal">
+                                    <Label Height="30">Client Dirs</Label>
+                                    <Label Width="10"></Label>
+                                    <Button Name="clientUp" Width="40" Height="25" Click="clientUp_Click">Up</Button>
+                                </StackPanel>
+                                <ListBox Grid.Row="1" Name="clientDirs" MouseDoubleClick="clientDirs_MouseDoubleClick"></ListBox>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Name="CopyBuildRequestToRepo" Click="ClientSend_Click" RenderTransformOrigin="2.571,-0.457" Margin="24,60,-215,131">Send Request to Repo</Button>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Grid.Row="0" Name="Repo" Header="Repository Navigation ">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="5"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid  Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="74*"/>
+                                    <ColumnDefinition Width="169*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal" Grid.ColumnSpan="2">
+                                    <Label Height="30" x:Name="RepoFilesLabel" Foreground="DarkSlateBlue" FontWeight="bold">Repositroy Files</Label>
+                                    <Label Width="10"></Label>
+                                    <Button Name="RepoTop" Width="40" Height="25" Click="RepoTop_Click">Top</Button>
+                                </StackPanel>
+                                <ListBox Grid.Row="1" SelectionMode = "Multiple" x:Name="repoFiles" MouseDoubleClick="repoFiles_MouseDoubleClick" Grid.ColumnSpan="2"></ListBox>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal">
+                                    <Label Height="30">Repository Dirs</Label>
+                                    <Label Width="10"></Label>
+                                    <Button Name="RepoUp" Width="40" Height="25" Click="RepoUp_Click">Up</Button>
+                                </StackPanel>
+                                <ListBox Grid.Row="1" Name="repoDirs" MouseDoubleClick="repoDirs_MouseDoubleClick"></ListBox>
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Name="CreateRequest" Click="createRequest_Click" Margin="55,36,-216,174" RenderTransformOrigin="0.466,-1.56">Create  Request</Button>
+                            <Button Name="SendBuildRequest" Click="sendBuildRequest_Click" Margin="55,106,-216,102">Send Build Request</Button>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Grid.Row="0" Name="MotherBuilder" Header="Builder Navigation">
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="5"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" RenderTransformOrigin="0.506,0.423">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Height="30" Margin="10,77,10,130">Naviagtion for Mother Builder</Label>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="5"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Height="30" Margin="0,23,88,63">Number of Process</Label>
+                            <TextBox Grid.Row="0" Name="ProcessNum" Height="30" Text="2" Margin="160,25,10,61"/>
+                            <Button  Grid.Row="2" Name="KillProcess" Click="KillProcess_Click" Margin="55,60,47,24" RenderTransformOrigin="0.466,-1.56">Kill Process</Button>
+                            <Button  Grid.Row="2" Name="CreateProcess" Click="CreateProcess_Click" Margin="55,10,47,77" >Create Process</Button>
+                        </Grid>
+                    </Grid>
+
+                </TabItem>
+            </TabControl>
+        </Border>
+
+        <Border Grid.Row="1" Background="#ddd">
+            <TextBlock x:Name="status" Grid.Row="1" Height="25" Padding="5" FontFamily="tahoma"></TextBlock>
+        </Border>
+    </Grid>
+</Window>

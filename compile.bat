@@ -1,0 +1,1 @@
+devenv "BuildServer.sln" /Rebuild Debug

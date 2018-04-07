@@ -1,0 +1,35 @@
+<BuildRequest>
+	<Author>Nitesh</Author>
+	<Name>TestBuild</Name>
+	<BuildTool>MSBuild</BuildTool>
+	<Project> <!--This test driver will build and pass all the test -->
+		<ProjectName>TestDemo</ProjectName>
+		<SourceFiles>
+			<File>TestDriver.cs</File>
+			<File>Tested1.cs</File>
+			<File>Tested2.cs</File>
+			<File>ITest.cs</File>
+		</SourceFiles>
+		<Config>CSTestDemo.csproj</Config>
+	</Project>
+	<Project> <!--This test driver will  fail build -->
+		<ProjectName>TestDemo2</ProjectName>
+		<SourceFiles>
+			<File>TestDriver.cs</File>
+			<File>Tested1.cs</File>
+			<File>Tested2.cs</File>
+			<File>ITest.cs</File>
+		</SourceFiles>
+		<Config>CSTestDemo.csproj</Config>
+	</Project>
+	<Project> <!--This test driver will build but fail test -->
+		<ProjectName>TestDemo3</ProjectName>
+		<SourceFiles>
+			<File>TestDriver.cs</File>
+			<File>Tested1.cs</File>
+			<File>Tested2.cs</File>
+			<File>ITest.cs</File>
+		</SourceFiles>
+		<Config>TestDemo3.csproj</Config>
+	</Project>
+</BuildRequest>
